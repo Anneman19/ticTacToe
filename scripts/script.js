@@ -1,10 +1,21 @@
-function playGame() {
+let boardArray = ["S", "S", "S", "A", "A", "A", "S", "S", "S"];
+let boardSize = 3;
 
+function playGame() {
+    generateBoard();
+    console.log("\n");
+    let userChoiceRow = parseInt(prompt("In which row would you like to play? ") - 1);
+    let userChoiceColumn = parseInt(prompt("In which column would you like to play? ") - 1);
+    let userChoiceType = prompt("X or 0? ");
+    function userChoiceIndex(userChoiceRow, userChoiceColumn, boardSize) {
+        return userChoiceRow * boardSize + userChoiceColumn;
+    }
+    boardArray[userChoiceIndex(userChoiceRow, userChoiceColumn, boardSize)] = userChoiceType;
+    generateBoard();
+    
 }
 
 function generateBoard() {
-    let boardArray = ["X", "X", "X", "0", "0", "0", "X", "X", "X"];
-
     for (let i = 0; i < boardArray.length; i++) {
         process.stdout.write(boardArray[i] + " ");
 
@@ -14,4 +25,4 @@ function generateBoard() {
     }
 }
 
-generateBoard();
+playGame();
